@@ -9,7 +9,13 @@ presplash.filename = logo.png
 icon.filename = logo.png
 orientation = portrait
 
+[buildozer]
+log_level = 2
+
 [android]
 api = 33
 minapi = 21
-ndk_version = 25b
+android.accept_sdk_license = True
+
+[python]
+version = 3.10.0
