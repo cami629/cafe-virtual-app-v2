@@ -16,6 +16,7 @@ log_level = 2
 api = 33
 minapi = 21
 android.accept_sdk_license = True
+android.sdk_build_tools = 33.0.2
 
 [python]
 version = 3.10.0
