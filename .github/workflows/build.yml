@@ -14,11 +14,18 @@ jobs:
         sudo apt install -y python3-pip python3-venv openjdk-17-jdk git zip unzip
         pip3 install buildozer cython==0.29.19
         
-    - name: Accept Android licenses
+    - name: Setup Android SDK and accept licenses
       run: |
         mkdir -p ~/.android
         touch ~/.android/repositories.cfg
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+        unzip -q commandlinetools-linux-9477386_latest.zip
+        mkdir -p cmdline-tools
+        mv tools cmdline-tools/latest
+        export ANDROID_HOME=$PWD
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+        yes | sdkmanager --licenses
+        sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
         
     - name: Build APK
       run: |
